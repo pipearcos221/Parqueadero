@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parqueadero.Core", "Parquea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parqueadero.Droid", "Parqueadero.Droid\Parqueadero.Droid.csproj", "{3D0DD129-6C04-479D-8143-97DA1BB15FCE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parqueadero.Core.Test", "Parqueadero.Core.Test\Parqueadero.Core.Test.csproj", "{32B4AFCC-B391-4179-A74F-31DE438FD5C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,5 +21,9 @@ Global
 		{3D0DD129-6C04-479D-8143-97DA1BB15FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D0DD129-6C04-479D-8143-97DA1BB15FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D0DD129-6C04-479D-8143-97DA1BB15FCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32B4AFCC-B391-4179-A74F-31DE438FD5C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32B4AFCC-B391-4179-A74F-31DE438FD5C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32B4AFCC-B391-4179-A74F-31DE438FD5C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32B4AFCC-B391-4179-A74F-31DE438FD5C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
