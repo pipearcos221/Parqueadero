@@ -5,9 +5,8 @@ namespace Parqueadero.Core.Domain.Interfaces
     {
         public bool VerificarDisponibilidadDeEspacioDeParqueo(int numeroCarrosEnParqueadero, int numeroMotosEnParqueadero, int tipoDeVehiculo)
         {
-            if (tipoDeVehiculo.Equals(Constantes.TIPO_CARRO) && numeroCarrosEnParqueadero >= Constantes.limiteDeCarros
-                || tipoDeVehiculo.Equals(Constantes.TIPO_MOTO) && numeroMotosEnParqueadero >= Constantes.limiteDeMotos) return false;
-            return true;
+            return (tipoDeVehiculo.Equals(Constantes.TIPO_CARRO) && numeroCarrosEnParqueadero < Constantes.limiteDeCarros)
+                || (tipoDeVehiculo.Equals(Constantes.TIPO_MOTO) && numeroMotosEnParqueadero < Constantes.limiteDeMotos);
         }
     }
 }

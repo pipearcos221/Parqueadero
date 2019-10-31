@@ -6,7 +6,7 @@ namespace Parqueadero.Core.Domain.Interfaces
         public int ObtenerNumeroDeDiasDeEstadia(DateTime fechaIngreso)
         {
             int unixTimestamp = (int)DateTime.Now.Subtract(fechaIngreso).TotalSeconds;
-            decimal horasTranscurridas = unixTimestamp / 3600;
+            decimal horasTranscurridas = unixTimestamp / new Decimal(3600);
             decimal horasACobrar = Math.Ceiling(horasTranscurridas);
             decimal diasACobrar = Math.Floor(horasACobrar / 24);
             decimal horasParaCobroPorDia = horasACobrar % 24;
@@ -20,7 +20,7 @@ namespace Parqueadero.Core.Domain.Interfaces
         public int ObtenerNumeroDeHorasDeEstadia(DateTime fechaIngreso)
         {
             int unixTimestamp = (int)DateTime.Now.Subtract(fechaIngreso).TotalSeconds;
-            decimal horasTranscurridas = unixTimestamp / 3600;
+            decimal horasTranscurridas = unixTimestamp / new Decimal(3600);
             decimal horasACobrar = Math.Ceiling(horasTranscurridas) % 24;
             if (horasACobrar >= Constantes.limiteDeCobroPorHoras)
             {
