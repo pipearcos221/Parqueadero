@@ -6,13 +6,15 @@ namespace Parqueadero.Core.Test
 {
     public class AutorizacionDeAccesoAParqueaderoTest
     {
-        [Fact]
-        public void ValidarAutorizacionParaAccederAlParqueaderoTest()
+        [Theory]
+        [InlineData("DFQ566")]
+        [InlineData("ACQ856")]
+        public void ValidarAutorizacionParaAccederAlParqueaderoTest(string value)
         {
             // arrange
             AutorizacionDeAccesoAParqueaderoImpl autorizacion = new AutorizacionDeAccesoAParqueaderoImpl();
             // act
-            bool respuesta = autorizacion.ValidarAutorizacionParaAccederAlParqueadero("DFQ566");
+            bool respuesta = autorizacion.ValidarAutorizacionParaAccederAlParqueadero(value);
             // assert
             Assert.True(respuesta);
         }
