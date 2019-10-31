@@ -14,14 +14,9 @@ namespace Parqueadero.Core.Domain
             string diaActual = fechaActual.ToString("dddd", dateTimeFormat).ToLower();
             if (primeraLetraPlaca.Equals("A"))
             {
-                if (diaActual.Equals("lunes") || diaActual.Equals("domingo")) return true;
-                else return false;
+                return diaActual.Equals("lunes") || diaActual.Equals("domingo");
             }
-            else
-            {
-                return true;
-            }
-
+            return true;
         }
     }
 }

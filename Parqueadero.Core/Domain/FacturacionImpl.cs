@@ -15,7 +15,10 @@ namespace Parqueadero.Core.Domain
             else
             {
                 valorAPagar = numeroDias * Constantes.valorDiaMoto + numeroHoras * Constantes.valorHoraMoto;
-                if (cilindraje >= Constantes.cilindrajeParaExcedente) valorAPagar += Constantes.valorExcedenteMoto;
+                if (cilindraje >= Constantes.cilindrajeParaExcedente)
+                {
+                    valorAPagar += Constantes.valorExcedenteMoto;
+                }
             }
             return valorAPagar;
         }
