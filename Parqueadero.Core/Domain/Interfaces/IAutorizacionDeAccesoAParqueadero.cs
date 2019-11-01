@@ -1,8 +1,7 @@
-﻿using System;
-namespace Parqueadero.Core.Domain.Interfaces
+﻿namespace Parqueadero.Core.Domain.Interfaces
 {
     public interface IAutorizacionDeAccesoAParqueadero
     {
-        Boolean ValidarAutorizacionParaAccederAlParqueadero(string placa);
+        bool ValidarAutorizacionParaAccederAlParqueadero(string placa);
     }
 }
