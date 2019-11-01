@@ -3,6 +3,6 @@ namespace Parqueadero.Core.Domain.Interfaces
 {
     public interface IDisponibilidadDeEspacio
     {
-        Boolean VerificarDisponibilidadDeEspacioDeParqueo(int numeroCarrosEnParqueadero, int numeroMotosEnParqueadero, int tipoDeVehiculo);
+        bool VerificarDisponibilidadDeEspacioDeParqueo(int numeroCarrosEnParqueadero, int numeroMotosEnParqueadero, int tipoDeVehiculo);
     }
 }
