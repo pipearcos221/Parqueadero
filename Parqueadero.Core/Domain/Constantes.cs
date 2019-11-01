@@ -3,9 +3,7 @@ namespace Parqueadero.Core.Domain
 {
     public static class Constantes
     {
-        public static readonly int TIPO_CARRO = 1;
-        public static readonly int TIPO_MOTO = 2;
-
+    
         public static readonly int limiteDeCarros = 20;
         public static readonly int limiteDeMotos = 10;
 
