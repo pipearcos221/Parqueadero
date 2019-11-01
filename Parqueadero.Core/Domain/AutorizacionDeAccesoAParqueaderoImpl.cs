@@ -9,7 +9,7 @@ namespace Parqueadero.Core.Domain
         public bool ValidarAutorizacionParaAccederAlParqueadero(string placa)
         {
 
-            string primeraLetraPlaca = placa != null ? placa.Substring(0, 1) : "";
+            string primeraLetraPlaca = placa != null ? placa.Substring(0, 1) : string.Empty;
             DateTime fechaActual = DateTime.Now;
             DateTimeFormatInfo dateTimeFormat = new CultureInfo("es-ES").DateTimeFormat;
             string diaActual = fechaActual.ToString("dddd", dateTimeFormat);
