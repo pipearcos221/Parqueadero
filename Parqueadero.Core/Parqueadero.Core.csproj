@@ -12,4 +12,10 @@
     <Folder Include="Data\Entity\" />
     <Folder Include="Domain\Enumerations\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Realm" Version="4.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="EmptyXmlFile.xml" />
+  </ItemGroup>
 </Project>
