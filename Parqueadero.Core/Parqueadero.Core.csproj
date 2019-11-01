@@ -9,5 +9,7 @@
     <Folder Include="Domain\" />
     <Folder Include="Domain\Models\" />
     <Folder Include="Domain\Interfaces\" />
+    <Folder Include="Data\Entity\" />
+    <Folder Include="Domain\Enumerations\" />
   </ItemGroup>
 </Project>
