@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Parqueadero.Core.Domain.Enumerations
 {
-    public enum VehicleTypes
+    public enum VehicleType
     {
         Moto,
         Carro
