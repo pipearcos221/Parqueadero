@@ -18,6 +18,20 @@ namespace Parqueadero.Core.Domain
             Placa = placa;
             FechaIngreso = fechaIngreso;
         }
+
+        public bool ObtenerAutorizacionDeAccesoAlParqueadero()
+        {
+            string LetraRestringida = "A";
+            string[] DiasDeAccesoPermitido = { "Lunes", "Domingo" };
+            string PrimeraLetraDePlaca = Placa != null ? Placa.Substring(0, 1) : string.Empty;
+            DateTime FechaActual = DateTime.Now;
+            DateTimeFormatInfo DateTimeFormat = new CultureInfo("es-ES").DateTimeFormat;
+            string DiaActual = FechaActual.ToString("dddd", DateTimeFormat);
+            if (String.Equals(PrimeraLetraDePlaca, LetraRestringida, StringComparison.OrdinalIgnoreCase)) {
+                return Array.Exists(DiasDeAccesoPermitido, DiaPermitido => DiaPermitido.Equals(DiaActual, StringComparison.OrdinalIgnoreCase));
+            }
+            return true;
+        }
         
         private const int LimiteDeCarros = 20;
         private const int LimiteDeMotos = 10;
