@@ -1,4 +1,4 @@
-﻿using System;
+﻿                                                                                                                                                                     using System;
 using Parqueadero.Core.Domain.Enumerations;
 using Parqueadero.Core.Domain.Interfaces;
 
