@@ -1,4 +1,5 @@
 ﻿using System;
+using Parqueadero.Core.Domain.Enumerations;
 using Parqueadero.Core.Domain.Interfaces;
 
 namespace Parqueadero.Core.Domain
@@ -8,7 +9,7 @@ namespace Parqueadero.Core.Domain
         public int CalcularPrecioAPagar(int numeroDias, int numeroHoras, int tipoDeVehiculo, int cilindraje)
         {
             int valorAPagar;
-            if (tipoDeVehiculo.Equals(Constantes.TIPO_CARRO))
+            if (tipoDeVehiculo.Equals(VehicleType.Carro))
             {
                 valorAPagar = numeroDias * Constantes.valorDiaCarro + numeroHoras * Constantes.valorHoraCarro;
             }
