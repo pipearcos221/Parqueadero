@@ -41,8 +41,8 @@ namespace Parqueadero.Core.Domain
 
         public int ObtenerNumeroDeDiasDeEstadia()
         {
-            int SegundosTranscurridos = (int)DateTime.Now.Subtract(FechaIngreso).TotalSeconds;
-            decimal horasTranscurridas = SegundosTranscurridos / new Decimal(3600);
+            int segundosTranscurridos = (int)DateTime.Now.Subtract(FechaIngreso).TotalSeconds;
+            decimal horasTranscurridas = segundosTranscurridos / new Decimal(3600);
             decimal horasACobrar = Math.Ceiling(horasTranscurridas);
             decimal diasACobrar = Math.Floor(horasACobrar / 24);
             decimal horasParaCobroPorDia = horasACobrar % 24;
@@ -51,6 +51,18 @@ namespace Parqueadero.Core.Domain
                 diasACobrar += 1;
             }
             return decimal.ToInt32(diasACobrar);
+        }
+
+        public int ObtenerNumeroDeHorasDeEstadia()
+        {
+            int SegundosTranscurridos = (int)DateTime.Now.Subtract(FechaIngreso).TotalSeconds;
+            decimal horasTranscurridas = SegundosTranscurridos / new Decimal(3600);
+            decimal horasACobrar = Math.Ceiling(horasTranscurridas) % 24;
+            if (horasACobrar >= LimiteDeCobroPorHoras)
+            {
+                horasACobrar = 0;
+            }
+            return decimal.ToInt32(horasACobrar);
         }
 
         private const int LimiteDeCarros = 20;
