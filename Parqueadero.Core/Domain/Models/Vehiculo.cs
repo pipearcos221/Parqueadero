@@ -19,7 +19,7 @@ namespace Parqueadero.Core.Domain
             FechaIngreso = fechaIngreso;
         }
 
-        public bool ObtenerAutorizacionDeAccesoAlParqueadero()
+        public bool VerificarAutorizacionDeAccesoAlParqueadero()
         {
             string LetraRestringida = "A";
             string[] DiasDeAccesoPermitido = { "Lunes", "Domingo" };
@@ -65,16 +65,16 @@ namespace Parqueadero.Core.Domain
             return decimal.ToInt32(horasACobrar);
         }
 
-        public int CalcularPrecioAPagar(int numeroDias, int numeroHoras)
+        public int CalcularPrecioAPagar(int numeroDiasACobrar, int numeroHorasACobrar)
         {
             int valorAPagar;
             if (Tipo.Equals(VehicleType.Carro))
             {
-                valorAPagar = numeroDias * ValorDiaCarro + numeroHoras * ValorHoraCarro;
+                valorAPagar = numeroDiasACobrar * ValorDiaCarro + numeroHorasACobrar * ValorHoraCarro;
             }
             else
             {
-                valorAPagar = numeroDias * ValorDiaMoto + numeroHoras * ValorHoraMoto;
+                valorAPagar = numeroDiasACobrar * ValorDiaMoto + numeroHorasACobrar * ValorHoraMoto;
                 if (Cilindraje >= CilindrajeParaExcedente)
                 {
                     valorAPagar += ValorExcedenteMoto;
