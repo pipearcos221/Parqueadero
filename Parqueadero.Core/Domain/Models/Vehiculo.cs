@@ -33,10 +33,10 @@ namespace Parqueadero.Core.Domain
             return true;
         }
 
-        public bool VerificarDisponibilidadDeEspacioLibreEnParqueadero(int numeroCarrosEnParqueadero, int numeroMotosEnParqueadero, VehicleType tipoDeVehiculo)
+        public bool VerificarDisponibilidadDeEspacioLibreEnParqueadero(int numeroCarrosEnParqueadero, int numeroMotosEnParqueadero)
         {
-            return (tipoDeVehiculo.Equals(VehicleType.Carro) && (numeroCarrosEnParqueadero < LimiteDeCarros))
-                || (tipoDeVehiculo.Equals(VehicleType.Moto) && (numeroMotosEnParqueadero < LimiteDeMotos));
+            return (Tipo.Equals(VehicleType.Carro) && (numeroCarrosEnParqueadero < LimiteDeCarros))
+                || (Tipo.Equals(VehicleType.Moto) && (numeroMotosEnParqueadero < LimiteDeMotos));
         }
 
         public int ObtenerNumeroDeDiasDeEstadia()
@@ -64,6 +64,8 @@ namespace Parqueadero.Core.Domain
             }
             return decimal.ToInt32(horasACobrar);
         }
+
+
 
         private const int LimiteDeCarros = 20;
         private const int LimiteDeMotos = 10;
