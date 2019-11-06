@@ -1,5 +1,6 @@
 using System;
 using Parqueadero.Core.Domain;
+using Parqueadero.Core.Domain.Enumerations;
 using Xunit;
 
 namespace Parqueadero.Core.Test
@@ -12,9 +13,9 @@ namespace Parqueadero.Core.Test
         public void ValidarAutorizacionParaAccederAlParqueaderoTest(string value)
         {
             // arrange
-            AutorizacionDeAccesoAParqueaderoImpl autorizacion = new AutorizacionDeAccesoAParqueaderoImpl();
+            Vehiculo vehiculo = new Vehiculo(VehicleType.Moto, 125, value, DateTime.Now.AddDays(-2));
             // act
-            bool respuesta = autorizacion.ValidarAutorizacionParaAccederAlParqueadero(value);
+            bool respuesta = vehiculo.VerificarAutorizacionDeAccesoAlParqueadero();
             // assert
             Assert.True(respuesta);
         }
