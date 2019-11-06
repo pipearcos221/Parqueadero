@@ -65,7 +65,23 @@ namespace Parqueadero.Core.Domain
             return decimal.ToInt32(horasACobrar);
         }
 
-
+        public int CalcularPrecioAPagar(int numeroDias, int numeroHoras)
+        {
+            int valorAPagar;
+            if (Tipo.Equals(VehicleType.Carro))
+            {
+                valorAPagar = numeroDias * ValorDiaCarro + numeroHoras * ValorHoraCarro;
+            }
+            else
+            {
+                valorAPagar = numeroDias * ValorDiaMoto + numeroHoras * ValorHoraMoto;
+                if (Cilindraje >= CilindrajeParaExcedente)
+                {
+                    valorAPagar += ValorExcedenteMoto;
+                }
+            }
+            return valorAPagar;
+        }
 
         private const int LimiteDeCarros = 20;
         private const int LimiteDeMotos = 10;
