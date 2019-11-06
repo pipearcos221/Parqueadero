@@ -32,7 +32,13 @@ namespace Parqueadero.Core.Domain
             }
             return true;
         }
-        
+
+        public bool VerificarDisponibilidadDeEspacioLibreEnParqueadero(int numeroCarrosEnParqueadero, int numeroMotosEnParqueadero, VehicleType tipoDeVehiculo)
+        {
+            return (tipoDeVehiculo.Equals(VehicleType.Carro) && (numeroCarrosEnParqueadero < LimiteDeCarros))
+                || (tipoDeVehiculo.Equals(VehicleType.Moto) && (numeroMotosEnParqueadero < LimiteDeMotos));
+        }
+
         private const int LimiteDeCarros = 20;
         private const int LimiteDeMotos = 10;
         private const int ValorHoraCarro = 1000;
