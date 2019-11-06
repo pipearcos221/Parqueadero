@@ -39,6 +39,20 @@ namespace Parqueadero.Core.Domain
                 || (tipoDeVehiculo.Equals(VehicleType.Moto) && (numeroMotosEnParqueadero < LimiteDeMotos));
         }
 
+        public int ObtenerNumeroDeDiasDeEstadia()
+        {
+            int SegundosTranscurridos = (int)DateTime.Now.Subtract(FechaIngreso).TotalSeconds;
+            decimal horasTranscurridas = SegundosTranscurridos / new Decimal(3600);
+            decimal horasACobrar = Math.Ceiling(horasTranscurridas);
+            decimal diasACobrar = Math.Floor(horasACobrar / 24);
+            decimal horasParaCobroPorDia = horasACobrar % 24;
+            if (horasParaCobroPorDia >= LimiteDeCobroPorHoras)
+            {
+                diasACobrar += 1;
+            }
+            return decimal.ToInt32(diasACobrar);
+        }
+
         private const int LimiteDeCarros = 20;
         private const int LimiteDeMotos = 10;
         private const int ValorHoraCarro = 1000;
