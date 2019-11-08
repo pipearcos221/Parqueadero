@@ -10,9 +10,8 @@
     <Folder Include="Domain\Models\" />
     <Folder Include="Data\Entity\" />
     <Folder Include="Domain\Enumerations\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="EmptyXmlFile.xml" />
+    <Folder Include="Domain\Repository\" />
+    <Folder Include="Data\RepositoryImpl\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Realm" Version="4.2.0" />
