@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Parqueadero.Core.Data.Entity;
-using Parqueadero.Core.Domain;
-using Parqueadero.Core.Domain.Enumerations;
 using Parqueadero.Core.Domain.Repository;
 using Realms;
 
