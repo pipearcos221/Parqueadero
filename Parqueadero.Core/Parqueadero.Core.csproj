@@ -12,6 +12,8 @@
     <Folder Include="Domain\Enumerations\" />
     <Folder Include="Domain\Repository\" />
     <Folder Include="Data\RepositoryImpl\" />
+    <Folder Include="Domain\Services\" />
+    <Folder Include="Domain\Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Realm" Version="4.2.0" />
