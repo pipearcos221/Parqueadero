@@ -1,3 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent">
-</RelativeLayout>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+    android:orientation="vertical"
+	android:minWidth="25px"
+	android:minHeight="25px">
+    <TextView
+		android:text="BIENVENIDO"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/txt_titulo_bienvenido"
+		android:gravity="center_horizontal"
+		android:layout_marginTop="40dp"
+        android:layout_alignParentTop="true"
+		style="@style/TextAppearance.AppCompat.Display1"
+        />
+	<TextView
+		android:text="Elija el tipo de accion que desea realizar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/txt_elegir_accion"
+		android:gravity="center_horizontal"
+        />
+    <Button
+        android:id="@+id/btn_ingresar"
+        android:text="Ingresar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:padding="15dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        />
+    <Button
+        android:id="@+id/btn_facturar"
+        android:text="Facturar y salir"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:padding="15dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        />
+</LinearLayout>
