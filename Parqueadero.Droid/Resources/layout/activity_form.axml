@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:padding="20dp">
+	<TextView
+		android:id="@+id/txt_indicaciones_pagar"
+		android:text="Dijite el formulario que se presenta a continuacion para realizar el registro de ingreso de su vehivulo."
+		style="@style/TextAppearance.AppCompat.Body1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+	<TextView
+		android:id="@+id/txt_tipo_vehiculo"
+		android:text="Tipo de vehiculo"
+		style="@style/TextAppearance.AppCompat.Body2"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="20dp"/>
+	<RadioGroup
+		android:id="@+id/radiogroup_tipo"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:layout_marginTop="10dp">
+		<RadioButton
+			android:id="@+id/radio_carro"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="20dp"
+			android:text="Carro"
+            />
+		<RadioButton
+			android:id="@+id/radio_moto"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Moto" />
+	</RadioGroup>
+	<TextView
+		android:id="@+id/txt_placa"
+		android:text="Placa"
+		style="@style/TextAppearance.AppCompat.Body2"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"/>
+	<EditText
+		android:id="@+id/input_placa"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:hint="Ingrese la placa del vehiculo"
+		android:inputType="textCapCharacters"/>
+
+	<TextView
+		android:id="@+id/txt_cilindraje"
+		android:text="Cilindraje"
+		style="@style/TextAppearance.AppCompat.Body2"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"/>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+		<EditText
+			android:id="@+id/input_cilindraje"
+			android:layout_width="280dp"
+			android:layout_height="wrap_content"
+			android:hint="Ingrese el cilindraje del vehiculo"
+			android:layout_marginRight="10dp"
+			android:inputType="number"/>
+		<TextView
+			android:id="@+id/txt_centrimetros_cubicos"
+			android:text="C.C."
+			style="@style/TextAppearance.AppCompat.Medium"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"/>
+	</LinearLayout>
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		<Button
+			android:id="@+id/btn_finalizar_registro"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:text="Finalizar"        
+		/>
+	</RelativeLayout>
+</LinearLayout>
