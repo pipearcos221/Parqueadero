@@ -7,7 +7,7 @@ using Realms;
 
 namespace Parqueadero.Core.Data
 {
-    public class VehiculoRepositoryImpl : IRepository
+    public class VehiculoRepositoryImpl : IVehiculoRepository
     {
         private Realm realm = Realm.GetInstance();
 
