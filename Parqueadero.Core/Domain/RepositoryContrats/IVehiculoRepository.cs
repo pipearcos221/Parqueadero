@@ -4,7 +4,7 @@ using Parqueadero.Core.Domain.Enumerations;
 
 namespace Parqueadero.Core.Domain.Repository
 {
-    public interface IRepository
+    public interface IVehiculoRepository
     {
         void RegistrarVehiculo(VehiculoDB vehiculo);
 
