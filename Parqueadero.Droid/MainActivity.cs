@@ -6,7 +6,7 @@ using Android.Content;
 
 namespace Parqueadero.Droid
 {
-    [Activity(Label = "@string/app_name", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
         Button btnIngresar;
@@ -19,29 +19,28 @@ namespace Parqueadero.Droid
 
             btnIngresar = FindViewById<Button>(Resource.Id.btn_ingresar);
             btnFacturar = FindViewById<Button>(Resource.Id.btn_facturar);
+
+            btnIngresar.Click += BtnIngresar_Click;
+            btnFacturar.Click += BtnFacturar_Click;
         }
 
         protected override void OnResume()
         {
             base.OnResume();
-            btnIngresar.Click += delegate
-            {
-                Intent intent = new Intent(this, typeof(FormActivity));
-                StartActivity(intent);
-                //Toast.MakeText(Application.Context, "sisisi", ToastLength.Long).Show();
-            };
-            btnFacturar.Click += delegate
-            {
-                Intent intent = new Intent(this, typeof(PayActivity));
-            };
-            //Intent intent = new Intent(this, AddActivity.class);
-            //  startActivity(intent);
         }
 
-        //public void OnClick(View V)
-        //{
-        //    Toast.MakeText(Application.Context, "sisisi", ToastLength.Long).Show();
-        //}
+        private void BtnIngresar_Click(object sender, System.EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(FormActivity));
+            StartActivity(intent);
+        }
+
+        private void BtnFacturar_Click(object sender, System.EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(PayActivity));
+            StartActivity(intent);
+        }
+      
 
 
     }
