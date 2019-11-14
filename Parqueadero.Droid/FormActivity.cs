@@ -26,14 +26,6 @@ namespace Parqueadero.Droid
             btnRegistrarse.Click += BtnRegistrarse_Click;
         }
 
-        
-
-        protected override void OnResume()
-        {
-            base.OnResume();
-            
-        }
-
         private void BtnRegistrarse_Click(object sender, System.EventArgs e)
         {
             var x = tipoVehiculo.Selected;
