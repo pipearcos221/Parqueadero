@@ -6,9 +6,9 @@ namespace Parqueadero.Core.Domain.Repository
 {
     public interface IVehiculoRepository
     {
-        void RegistrarVehiculo(VehiculoDB vehiculo);
+        void RegistrarVehiculo(Vehiculo vehiculo);
 
-        List<VehiculoDB> ListarVehiculosPorTipo(int tipo);
+        List<Vehiculo> ListarVehiculosPorTipo(int tipo);
 
         void EliminarVehiculoPorPlaca(string placa);
     }
