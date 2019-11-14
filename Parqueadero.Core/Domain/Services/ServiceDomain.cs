@@ -12,13 +12,9 @@ namespace Parqueadero.Core.Domain.Services
 {
     public class ServiceDomain
     {
-        public ServiceDomain()
+       public void RegistrarIngresoDeVehiculo(Vehiculo vehiculo)
         {
-        }
-
-        public void RegistrarIngresoDeVehiculo(Vehiculo vehiculo)
-        {
-            IRepository accessData = new VehiculoRepositoryImpl();
+            IVehiculoRepository accessData = new VehiculoRepositoryImpl();
             int numeroDeCarrosEnParqueadero;
             int numeroDeMotosEnParqueadero;
 
