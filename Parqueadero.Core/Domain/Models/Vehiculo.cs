@@ -6,10 +6,30 @@ namespace Parqueadero.Core.Domain
 {
     public class Vehiculo
     {
+        #region Constants
+
+        private const int limiteDeCarros = 20;
+        private const int limiteDeMotos = 10;
+        private const int valorHoraCarro = 1000;
+        private const int valorHoraMoto = 500;
+        private const int valorDiaCarro = 8000;
+        private const int valorDiaMoto = 4000;
+        private const int valorExcedenteMoto = 2000;
+        private const int cilindrajeParaExcedente = 500;
+        private const int limiteDeCobroPorHoras = 9;
+
+        #endregion
+
+        #region Properties
+
         public VehicleType Tipo { get; private set; }
         public int Cilindraje { get; private set; }
         public string Placa { get; private set; }
         public DateTime FechaIngreso { get; private set; }
+
+        #endregion
+
+        #region Business
 
         public Vehiculo(VehicleType tipo, int cilindraje, string placa, DateTime fechaIngreso)
         {
@@ -27,7 +47,8 @@ namespace Parqueadero.Core.Domain
             DateTime FechaActual = DateTime.Now;
             DateTimeFormatInfo DateTimeFormat = new CultureInfo("es-ES").DateTimeFormat;
             string DiaActual = FechaActual.ToString("dddd", DateTimeFormat);
-            if (String.Equals(PrimeraLetraDePlaca, LetraRestringida, StringComparison.OrdinalIgnoreCase)) {
+            if (String.Equals(PrimeraLetraDePlaca, LetraRestringida, StringComparison.OrdinalIgnoreCase))
+            {
                 return Array.Exists(DiasDeAccesoPermitido, DiaPermitido => DiaPermitido.Equals(DiaActual, StringComparison.OrdinalIgnoreCase));
             }
             return true;
@@ -35,8 +56,8 @@ namespace Parqueadero.Core.Domain
 
         public bool VerificarDisponibilidadDeEspacioLibreEnParqueadero(int numeroCarrosEnParqueadero, int numeroMotosEnParqueadero)
         {
-            return (Tipo.Equals(VehicleType.Carro) && (numeroCarrosEnParqueadero < LimiteDeCarros))
-                || (Tipo.Equals(VehicleType.Moto) && (numeroMotosEnParqueadero < LimiteDeMotos));
+            return (Tipo.Equals(VehicleType.Carro) && (numeroCarrosEnParqueadero < limiteDeCarros))
+                || (Tipo.Equals(VehicleType.Moto) && (numeroMotosEnParqueadero < limiteDeMotos));
         }
 
         public int ObtenerNumeroDeDiasDeEstadia()
@@ -46,7 +67,7 @@ namespace Parqueadero.Core.Domain
             decimal horasACobrar = Math.Ceiling(horasTranscurridas);
             decimal diasACobrar = Math.Floor(horasACobrar / 24);
             decimal horasParaCobroPorDia = horasACobrar % 24;
-            if (horasParaCobroPorDia >= LimiteDeCobroPorHoras)
+            if (horasParaCobroPorDia >= limiteDeCobroPorHoras)
             {
                 diasACobrar += 1;
             }
@@ -58,7 +79,7 @@ namespace Parqueadero.Core.Domain
             int SegundosTranscurridos = (int)DateTime.Now.Subtract(FechaIngreso).TotalSeconds;
             decimal horasTranscurridas = SegundosTranscurridos / new Decimal(3600);
             decimal horasACobrar = Math.Ceiling(horasTranscurridas) % 24;
-            if (horasACobrar >= LimiteDeCobroPorHoras)
+            if (horasACobrar >= limiteDeCobroPorHoras)
             {
                 horasACobrar = 0;
             }
@@ -70,27 +91,19 @@ namespace Parqueadero.Core.Domain
             int valorAPagar;
             if (Tipo.Equals(VehicleType.Carro))
             {
-                valorAPagar = numeroDiasACobrar * ValorDiaCarro + numeroHorasACobrar * ValorHoraCarro;
+                valorAPagar = numeroDiasACobrar * valorDiaCarro + numeroHorasACobrar * valorHoraCarro;
             }
             else
             {
-                valorAPagar = numeroDiasACobrar * ValorDiaMoto + numeroHorasACobrar * ValorHoraMoto;
-                if (Cilindraje >= CilindrajeParaExcedente)
+                valorAPagar = numeroDiasACobrar * valorDiaMoto + numeroHorasACobrar * valorHoraMoto;
+                if (Cilindraje >= cilindrajeParaExcedente)
                 {
-                    valorAPagar += ValorExcedenteMoto;
+                    valorAPagar += valorExcedenteMoto;
                 }
             }
             return valorAPagar;
         }
 
-        private const int LimiteDeCarros = 20;
-        private const int LimiteDeMotos = 10;
-        private const int ValorHoraCarro = 1000;
-        private const int ValorHoraMoto = 500;
-        private const int ValorDiaCarro = 8000;
-        private const int ValorDiaMoto = 4000;
-        private const int ValorExcedenteMoto = 2000;
-        private const int CilindrajeParaExcedente = 500;
-        private const int LimiteDeCobroPorHoras = 9;
+        #endregion
     }
 }
