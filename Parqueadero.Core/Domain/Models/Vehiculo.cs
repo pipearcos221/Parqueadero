@@ -17,6 +17,10 @@ namespace Parqueadero.Core.Domain
         private const int valorExcedenteMoto = 2000;
         private const int cilindrajeParaExcedente = 500;
         private const int limiteDeCobroPorHoras = 9;
+        private const decimal segundosEnUnaHora = 3600M;
+        private const int horasEnUnDia = 24;
+        private const int diasCobradosPorExcesoDeHoras = 1;
+        private const int horasCobradasAlSuperarElLimite = 0;
 
         #endregion
 
@@ -63,13 +67,13 @@ namespace Parqueadero.Core.Domain
         public int ObtenerNumeroDeDiasDeEstadia()
         {
             int segundosTranscurridos = (int)DateTime.Now.Subtract(FechaIngreso).TotalSeconds;
-            decimal horasTranscurridas = segundosTranscurridos / new Decimal(3600);
+            decimal horasTranscurridas = segundosTranscurridos / segundosEnUnaHora;
             decimal horasACobrar = Math.Ceiling(horasTranscurridas);
-            decimal diasACobrar = Math.Floor(horasACobrar / 24);
-            decimal horasParaCobroPorDia = horasACobrar % 24;
+            decimal diasACobrar = Math.Floor(horasACobrar / horasEnUnDia);
+            decimal horasParaCobroPorDia = horasACobrar % horasEnUnDia;
             if (horasParaCobroPorDia >= limiteDeCobroPorHoras)
             {
-                diasACobrar += 1;
+                diasACobrar += diasCobradosPorExcesoDeHoras;
             }
             return decimal.ToInt32(diasACobrar);
         }
@@ -77,11 +81,11 @@ namespace Parqueadero.Core.Domain
         public int ObtenerNumeroDeHorasDeEstadia()
         {
             int SegundosTranscurridos = (int)DateTime.Now.Subtract(FechaIngreso).TotalSeconds;
-            decimal horasTranscurridas = SegundosTranscurridos / new Decimal(3600);
-            decimal horasACobrar = Math.Ceiling(horasTranscurridas) % 24;
+            decimal horasTranscurridas = SegundosTranscurridos / segundosEnUnaHora;
+            decimal horasACobrar = Math.Ceiling(horasTranscurridas) % horasEnUnDia;
             if (horasACobrar >= limiteDeCobroPorHoras)
             {
-                horasACobrar = 0;
+                horasACobrar = horasCobradasAlSuperarElLimite;
             }
             return decimal.ToInt32(horasACobrar);
         }
