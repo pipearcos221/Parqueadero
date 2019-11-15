@@ -15,8 +15,23 @@
     <Folder Include="Domain\Services\" />
     <Folder Include="Domain\Exceptions\" />
     <Folder Include="Data\Mappers\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Realm" Version="4.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Resources\Resources.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\ResourcesApp.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesApp.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\ResourcesApp.Designer.cs">
+      <DependentUpon>ResourcesApp.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
