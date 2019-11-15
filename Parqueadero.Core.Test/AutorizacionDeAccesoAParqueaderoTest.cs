@@ -7,16 +7,43 @@ namespace Parqueadero.Core.Test
 {
     public class AutorizacionDeAccesoAParqueaderoTest
     {
-        [Theory]
-        [InlineData("DFQ566")]
-        [InlineData("ACQ856")]
-        public void ValidarAutorizacionParaAccederAlParqueaderoTest(string value)
+        [Fact]
+        public void ValidarAutorizacionParaAccederAlParqueaderoCuandoLaPlacaNoEmpiezaPorA()
         {
-            // arrange
-            Vehiculo vehiculo = new Vehiculo(VehicleType.Moto, 125, value, DateTime.Now.AddDays(-2));
-            // act
+            // Arrange
+            Vehiculo vehiculo = new Vehiculo(VehicleType.Moto, 125, "DFQ566", DateTime.Now);
+
+            // Act
             bool respuesta = vehiculo.VerificarAutorizacionDeAccesoAlParqueadero();
-            // assert
+
+            // Assert
+            Assert.True(respuesta);
+        }
+
+        [Fact]
+        public void ValidarAutorizacionParaAccederAlParqueaderoCuandoLaPlacaEmpiezaPorAYEsDiaDomingo()
+        {
+            // Arrange
+            DateTime diaDomingo = new DateTime(2019, 11, 10);
+            Vehiculo vehiculo = new Vehiculo(VehicleType.Moto, 125, "ACQ856", diaDomingo);
+            // Act
+            bool respuesta = vehiculo.VerificarAutorizacionDeAccesoAlParqueadero();
+
+            // Assert
+            Assert.False(respuesta);
+        }
+
+        [Fact]
+        public void ValidarAutorizacionParaAccederAlParqueaderoCuandoLaPlacaEmpiezaPorAYNoEsDiaDomingo()
+        {
+            // Arrange
+            DateTime diaMartes = new DateTime(2019, 11, 12);
+            Vehiculo vehiculo = new Vehiculo(VehicleType.Moto, 125, "ACQ856", diaMartes);
+
+            // Act
+            bool respuesta = vehiculo.VerificarAutorizacionDeAccesoAlParqueadero();
+
+            // Assert
             Assert.True(respuesta);
         }
     }
