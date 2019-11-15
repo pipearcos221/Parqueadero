@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Parqueadero.Core.Data;
-using Parqueadero.Core.Data.Entity;
 using Parqueadero.Core.Domain.Enumerations;
 using Parqueadero.Core.Domain.Exceptions;
 using Parqueadero.Core.Domain.Repository;
@@ -12,17 +9,17 @@ namespace Parqueadero.Core.Domain.Services
 {
     public class ServiceDomain
     {
-       public void RegistrarIngresoDeVehiculo(Vehiculo vehiculo)
+        public void RegistrarIngresoDeVehiculo(Vehiculo vehiculo)
         {
-            IVehiculoRepository accessData = new VehiculoRepositoryImpl();
+            IVehiculoRepository accessData = new VehiculoRepository();
             int numeroDeCarrosEnParqueadero;
             int numeroDeMotosEnParqueadero;
 
-            var listaDeCarros = Task.Run(() => accessData.ListarVehiculosPorTipo((int)VehicleType.Carro));
-            var listaDeMotos = Task.Run(() => accessData.ListarVehiculosPorTipo((int)VehicleType.Moto));
+            List<Vehiculo> listaDeCarros = Task.Run(() => accessData.ListarVehiculosPorTipo((int)VehicleType.Carro)).Result;
+            List<Vehiculo> listaDeMotos = Task.Run(() => accessData.ListarVehiculosPorTipo((int)VehicleType.Moto)).Result;
 
-            numeroDeCarrosEnParqueadero = listaDeCarros.Result.Count;
-            numeroDeMotosEnParqueadero = listaDeMotos.Result.Count;
+            numeroDeCarrosEnParqueadero = listaDeCarros.Count;
+            numeroDeMotosEnParqueadero = listaDeMotos.Count;
 
             bool disponibilidadDeEspacio = vehiculo.VerificarDisponibilidadDeEspacioLibreEnParqueadero(numeroDeCarrosEnParqueadero, numeroDeMotosEnParqueadero);
             if (disponibilidadDeEspacio is false)
@@ -38,15 +35,7 @@ namespace Parqueadero.Core.Domain.Services
 
             Task.Run(() =>
             {
-                VehiculoDB vehiculoAIngresar = new VehiculoDB
-                {
-                    Tipo = (int)vehiculo.Tipo,
-                    Cilindraje = vehiculo.Cilindraje,
-                    Placa = vehiculo.Placa,
-                    FechaIngreso = vehiculo.FechaIngreso.ToString()
-                };
-
-                accessData.RegistrarVehiculo(vehiculoAIngresar);
+                accessData.RegistrarVehiculo(vehiculo);
             }
             );
         }
