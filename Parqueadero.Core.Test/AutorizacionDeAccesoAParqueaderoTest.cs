@@ -26,6 +26,7 @@ namespace Parqueadero.Core.Test
             // Arrange
             DateTime diaDomingo = new DateTime(2019, 11, 10);
             Vehiculo vehiculo = new Vehiculo(VehicleType.Moto, 125, "ACQ856", diaDomingo);
+
             // Act
             bool respuesta = vehiculo.VerificarAutorizacionDeAccesoAlParqueadero();
 
