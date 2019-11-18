@@ -6,18 +6,63 @@ namespace Parqueadero.Core.Test
 {
     public class DisponibilidadDeEspacioTest
     {
-        [Theory]
-        [InlineData(VehicleType.Carro, 20, 10)]
-        [InlineData(VehicleType.Carro, 19, 10)]
-        [InlineData(VehicleType.Moto, 20, 10)]
-        [InlineData(VehicleType.Moto, 20, 9)]
-        public void VerificarDisponibilidadDeEspacioDeParqueoTest(VehicleType tipo, int numeroDeCarrosEnParqueadero, int numeroDeMotosEnParqueadero)
+        [Fact]
+        public void VerificarDisponibilidadDeEspacioDeParqueoCuandoEsUnCarroYNoHayEspacio()
         {
-            // arrange
-            Vehiculo vehiculo = new Vehiculo(tipo, 125, "CBD432", DateTime.Now);
-            // act
+            // Arrange
+            Vehiculo vehiculo = new Vehiculo(VehicleType.Carro, 125, "CBD432", DateTime.Now);
+            int numeroDeCarrosEnParqueadero = 20;
+            int numeroDeMotosEnParqueadero = 10;
+
+            // Act
             bool respuesta = vehiculo.VerificarDisponibilidadDeEspacioLibreEnParqueadero(numeroDeCarrosEnParqueadero, numeroDeMotosEnParqueadero);
-            // assert
+
+            // Assert
+            Assert.False(respuesta);
+        }
+
+        [Fact]
+        public void VerificarDisponibilidadDeEspacioDeParqueoCuandoEsUnCarroYSiHayEspacio()
+        {
+            // Arrange
+            Vehiculo vehiculo = new Vehiculo(VehicleType.Carro, 125, "CBD432", DateTime.Now);
+            int numeroDeCarrosEnParqueadero = 10;
+            int numeroDeMotosEnParqueadero = 10;
+
+            // Act
+            bool respuesta = vehiculo.VerificarDisponibilidadDeEspacioLibreEnParqueadero(numeroDeCarrosEnParqueadero, numeroDeMotosEnParqueadero);
+
+            // Assert
+            Assert.True(respuesta);
+        }
+
+        [Fact]
+        public void VerificarDisponibilidadDeEspacioDeParqueoCuandoEsUnaMotoYNoHayEspacio()
+        {
+            // Arrange
+            Vehiculo vehiculo = new Vehiculo(VehicleType.Moto, 125, "CBD432", DateTime.Now);
+            int numeroDeCarrosEnParqueadero = 20;
+            int numeroDeMotosEnParqueadero = 10;
+
+            // Act
+            bool respuesta = vehiculo.VerificarDisponibilidadDeEspacioLibreEnParqueadero(numeroDeCarrosEnParqueadero, numeroDeMotosEnParqueadero);
+
+            // Assert
+            Assert.False(respuesta);
+        }
+
+        [Fact]
+        public void VerificarDisponibilidadDeEspacioDeParqueoCuandoEsUnaMotoYSiHayEspacio()
+        {
+            // Arrange
+            Vehiculo vehiculo = new Vehiculo(VehicleType.Moto, 125, "CBD432", DateTime.Now);
+            int numeroDeCarrosEnParqueadero = 10;
+            int numeroDeMotosEnParqueadero = 5;
+
+            // Act
+            bool respuesta = vehiculo.VerificarDisponibilidadDeEspacioLibreEnParqueadero(numeroDeCarrosEnParqueadero, numeroDeMotosEnParqueadero);
+
+            // Assert
             Assert.True(respuesta);
         }
     }
