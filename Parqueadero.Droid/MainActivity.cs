@@ -24,11 +24,6 @@ namespace Parqueadero.Droid
             btnFacturar.Click += BtnFacturar_Click;
         }
 
-        protected override void OnResume()
-        {
-            base.OnResume();
-        }
-
         private void BtnIngresar_Click(object sender, System.EventArgs e)
         {
             Intent intent = new Intent(this, typeof(FormActivity));
