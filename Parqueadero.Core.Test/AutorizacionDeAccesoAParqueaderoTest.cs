@@ -21,7 +21,7 @@ namespace Parqueadero.Core.Test
         }
 
         [Fact]
-        public void ValidarAutorizacionParaAccederAlParqueaderoCuandoLaPlacaEmpiezaPorAYEsDiaDomingo()
+        public void ValidarAutorizacionParaAccederAlParqueaderoCuandoLaPlacaEmpiezaPorAYElDiaActualEsUnDiaRestringido()
         {
             // Arrange
             DateTime diaDomingo = new DateTime(2019, 11, 10);
@@ -35,7 +35,7 @@ namespace Parqueadero.Core.Test
         }
 
         [Fact]
-        public void ValidarAutorizacionParaAccederAlParqueaderoCuandoLaPlacaEmpiezaPorAYNoEsDiaDomingo()
+        public void ValidarAutorizacionParaAccederAlParqueaderoCuandoLaPlacaEmpiezaPorAYElDiaActualNoEsUnDiaRestringido()
         {
             // Arrange
             DateTime diaMartes = new DateTime(2019, 11, 12);
