@@ -1,5 +1,4 @@
-﻿using System;
-using Parqueadero.Core.Data.Entity;
+﻿using Parqueadero.Core.Data.Entity;
 using Parqueadero.Core.Domain;
 
 namespace Parqueadero.Core.Data.Mappers

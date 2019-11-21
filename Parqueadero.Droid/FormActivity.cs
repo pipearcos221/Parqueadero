@@ -1,8 +1,6 @@
-﻿
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Views;
 using Android.Widget;
 using Parqueadero.Core.Domain.Services;
 
@@ -31,7 +29,5 @@ namespace Parqueadero.Droid
             var x = tipoVehiculo.Selected;
             Toast.MakeText(Application.Context, $"Valor: {x}", ToastLength.Short).Show();
         }
-
-
     }
 }

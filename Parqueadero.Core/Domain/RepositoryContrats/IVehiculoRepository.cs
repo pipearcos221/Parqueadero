@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using Parqueadero.Core.Data.Entity;
-using Parqueadero.Core.Domain.Enumerations;
 
 namespace Parqueadero.Core.Domain.Repository
 {
