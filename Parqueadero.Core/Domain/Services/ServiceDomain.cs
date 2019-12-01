@@ -4,6 +4,7 @@ using Parqueadero.Core.Data;
 using Parqueadero.Core.Domain.Enumerations;
 using Parqueadero.Core.Domain.Exceptions;
 using Parqueadero.Core.Domain.Repository;
+using Parqueadero.Core.Resources;
 
 namespace Parqueadero.Core.Domain.Services
 {
@@ -15,8 +16,8 @@ namespace Parqueadero.Core.Domain.Services
             int numeroDeCarrosEnParqueadero;
             int numeroDeMotosEnParqueadero;
 
-            List<Vehiculo> listaDeCarros = Task.Run(() => accessData.ListarVehiculosPorTipo((int)VehicleType.Carro)).Result;
-            List<Vehiculo> listaDeMotos = Task.Run(() => accessData.ListarVehiculosPorTipo((int)VehicleType.Moto)).Result;
+            List<Vehiculo> listaDeCarros = accessData.ListarVehiculosPorTipo((int)VehicleType.Carro) != null ? accessData.ListarVehiculosPorTipo((int)VehicleType.Carro) : new List<Vehiculo>();
+            List<Vehiculo> listaDeMotos = accessData.ListarVehiculosPorTipo((int)VehicleType.Moto) != null ? accessData.ListarVehiculosPorTipo((int)VehicleType.Moto) : new List<Vehiculo>();
 
             numeroDeCarrosEnParqueadero = listaDeCarros.Count;
             numeroDeMotosEnParqueadero = listaDeMotos.Count;
@@ -24,20 +25,16 @@ namespace Parqueadero.Core.Domain.Services
             bool disponibilidadDeEspacio = vehiculo.VerificarDisponibilidadDeEspacioLibreEnParqueadero(numeroDeCarrosEnParqueadero, numeroDeMotosEnParqueadero);
             if (disponibilidadDeEspacio is false)
             {
-                throw new ParkingAccessException("El parqueadero no posee espacios disponibles");
+                throw new ParkingAccessException(MensajesGenerales.SinEspacionEnParqueadero);
             }
 
             bool autorizacionDeIngreso = vehiculo.VerificarAutorizacionDeAccesoAlParqueadero();
             if (autorizacionDeIngreso is false)
             {
-                throw new ParkingAccessException("Usted no esta autorizado para ingresar");
+                throw new ParkingAccessException(MensajesGenerales.SinAutorizacionParaAccesoAParqueadero);
             }
 
-            Task.Run(() =>
-            {
-                accessData.RegistrarVehiculo(vehiculo);
-            }
-            );
+            accessData.RegistrarVehiculo(vehiculo);
         }
 
     }
