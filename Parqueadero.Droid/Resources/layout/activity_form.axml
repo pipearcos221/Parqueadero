@@ -29,6 +29,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginRight="20dp"
+			android:checked="true"
 			android:text="Carro"
             />
 		<RadioButton
@@ -37,46 +38,46 @@
 			android:layout_height="wrap_content"
 			android:text="Moto" />
 	</RadioGroup>
-	<TextView
-		android:id="@+id/txt_placa"
-		android:text="Placa"
-		style="@style/TextAppearance.AppCompat.Body2"
+	<android.support.design.widget.TextInputLayout
+		android:id="@+id/textinputlayout_placa"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="10dp"/>
-	<EditText
-		android:id="@+id/input_placa"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:hint="Ingrese la placa del vehiculo"
-		android:inputType="textCapCharacters"/>
-
-	<TextView
-		android:id="@+id/txt_cilindraje"
-		android:text="Cilindraje"
-		style="@style/TextAppearance.AppCompat.Body2"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="10dp"/>
+		android:layout_marginTop="10dp"
+		style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+		<android.support.design.widget.TextInputEditText
+			android:id="@+id/input_placa"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="Placa"
+			android:inputType="textCapCharacters"/>
+	</android.support.design.widget.TextInputLayout>
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
-		<EditText
-			android:id="@+id/input_cilindraje"
+		<android.support.design.widget.TextInputLayout
+			android:id="@+id/textinputlayout_cilindraje"
 			android:layout_width="280dp"
 			android:layout_height="wrap_content"
-			android:hint="Ingrese el cilindraje del vehiculo"
-			android:layout_marginRight="10dp"
-			android:inputType="number"/>
+			android:layout_marginTop="10dp"
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+			<android.support.design.widget.TextInputEditText
+				android:id="@+id/input_cilindraje"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="Cilindraje"
+				android:inputType="number"/>
+		</android.support.design.widget.TextInputLayout>
 		<TextView
 			android:id="@+id/txt_centrimetros_cubicos"
 			android:text="C.C."
 			style="@style/TextAppearance.AppCompat.Medium"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="10dp"/>
+			android:layout_height="match_parent"
+			android:layout_marginTop="10dp"
+			android:gravity="center"/>
 	</LinearLayout>
+
 	<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
