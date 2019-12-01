@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using Parqueadero.Core.Domain.Enumerations;
+using Parqueadero.Core.Resources;
 
 namespace Parqueadero.Core.Domain
 {
@@ -45,15 +46,15 @@ namespace Parqueadero.Core.Domain
 
         public bool VerificarAutorizacionDeAccesoAlParqueadero()
         {
-            string LetraRestringida = "A";
-            string[] DiasDeAccesoPermitido = { "Lunes", "Domingo" };
+            string LetraRestringida = MensajesGenerales.LetraA;
+            string[] DiasDeAccesoPermitido = { MensajesGenerales.DiaLunes, MensajesGenerales.DiaDomingo};
             string PrimeraLetraDePlaca = Placa != null ? Placa.Substring(0, 1) : string.Empty;
             DateTime FechaActual = DateTime.Now;
-            DateTimeFormatInfo DateTimeFormat = new CultureInfo("es-ES").DateTimeFormat;
-            string DiaActual = FechaActual.ToString("dddd", DateTimeFormat);
+            DateTimeFormatInfo DateTimeFormat = new CultureInfo(MensajesGenerales.CulturaEspanol).DateTimeFormat;
+            string DiaActual = FechaActual.ToString(MensajesGenerales.FormatoDeFechaMostrarSoloELDiaDeLaSemana, DateTimeFormat);
             if (String.Equals(PrimeraLetraDePlaca, LetraRestringida, StringComparison.OrdinalIgnoreCase))
             {
-                return Array.Exists(DiasDeAccesoPermitido, DiaPermitido => DiaPermitido.Equals(DiaActual, StringComparison.OrdinalIgnoreCase));
+                return !Array.Exists(DiasDeAccesoPermitido, DiaPermitido => DiaPermitido.Equals(DiaActual, StringComparison.OrdinalIgnoreCase));
             }
             return true;
         }
