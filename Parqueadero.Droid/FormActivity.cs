@@ -53,6 +53,27 @@ namespace Parqueadero.Droid
 
             return new Vehiculo(tipoDeVehiculoSeleccionado, cilindraje, placaDelVehiculo, fechaDeIngreso);
         }
+
+        private void ValidarObligatoriedadDeCampoEnFormulario(Vehiculo vehiculo)
+        {
+            if (vehiculo.Placa == String.Empty)
+            {
+                textInputLayoutPlaca.ErrorEnabled = true;
+                textInputLayoutPlaca.Error = MensajesGenerales.CampoObligatorio;
+            }
+            else {
+                textInputLayoutPlaca.ErrorEnabled = false;
+            }
+            if (vehiculo.Cilindraje.ToString() == MensajesGenerales.CodigoErrorCampoObligatorio)
+            {
+                textInputLayoutCilindraje.ErrorEnabled = true;
+                textInputLayoutCilindraje.Error = MensajesGenerales.CampoObligatorio;
+            }
+            else
+            {
+                textInputLayoutCilindraje.ErrorEnabled = false;
+            }
+
         }
     }
 }
