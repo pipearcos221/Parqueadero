@@ -28,6 +28,7 @@ namespace Parqueadero.Droid
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_form);
             Title = "Registro";
+
             btnRegistrarse = FindViewById<Button>(Resource.Id.btn_finalizar_registro);
             tipoVehiculo = FindViewById<RadioGroup>(Resource.Id.radiogroup_tipo);
             textInputLayoutPlaca = FindViewById<TextInputLayout>(Resource.Id.textinputlayout_placa);
@@ -42,6 +43,16 @@ namespace Parqueadero.Droid
         {
             var x = tipoVehiculo.Selected;
             Toast.MakeText(Application.Context, $"Valor: {x}", ToastLength.Short).Show();
+        private Vehiculo ObtenerDatosDelFormulario()
+        {
+            VehicleType tipoDeVehiculoSeleccionado = tipoVehiculo.CheckedRadioButtonId == Resource.Id.radio_carro ? VehicleType.Carro : VehicleType.Moto;
+            string placaDelVehiculo = inputPlaca.Text != null ? inputPlaca.Text : String.Empty;
+            string textCilindraje = inputCilindraje.Text != null ? inputCilindraje.Text : String.Empty;
+            int cilindraje = int.Parse(textCilindraje != String.Empty ? textCilindraje : MensajesGenerales.CodigoErrorCampoObligatorio);
+            DateTime fechaDeIngreso = DateTime.Now;
+
+            return new Vehiculo(tipoDeVehiculoSeleccionado, cilindraje, placaDelVehiculo, fechaDeIngreso);
+        }
         }
     }
 }
