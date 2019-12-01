@@ -41,8 +41,25 @@ namespace Parqueadero.Droid
 
         private void BtnRegistrarse_Click(object sender, System.EventArgs e)
         {
-            var x = tipoVehiculo.Selected;
-            Toast.MakeText(Application.Context, $"Valor: {x}", ToastLength.Short).Show();
+            Vehiculo vehiculo;
+
+            vehiculo = ObtenerDatosDelFormulario();
+            ValidarObligatoriedadDeCampoEnFormulario(vehiculo);
+
+            if (vehiculo.Placa != String.Empty && vehiculo.Cilindraje != int.Parse(MensajesGenerales.CodigoErrorCampoObligatorio)) {
+                try {
+                    services.RegistrarIngresoDeVehiculo(vehiculo);
+                    Toast.MakeText(Application.Context, MensajesGenerales.VehiculoRegistrado, ToastLength.Short).Show();
+                }
+                catch (ParkingAccessException exception)
+                {
+                    Toast.MakeText(Application.Context, exception.Message, ToastLength.Short).Show();
+                }
+                
+            }
+
+        }
+
         private Vehiculo ObtenerDatosDelFormulario()
         {
             VehicleType tipoDeVehiculoSeleccionado = tipoVehiculo.CheckedRadioButtonId == Resource.Id.radio_carro ? VehicleType.Carro : VehicleType.Moto;
