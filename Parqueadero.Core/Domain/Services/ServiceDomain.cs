@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using Parqueadero.Core.Data;
 using Parqueadero.Core.Domain.Enumerations;
 using Parqueadero.Core.Domain.Exceptions;
@@ -10,9 +9,10 @@ namespace Parqueadero.Core.Domain.Services
 {
     public class ServiceDomain
     {
+        IVehiculoRepository accessData = new VehiculoRepository();
+
         public void RegistrarIngresoDeVehiculo(Vehiculo vehiculo)
         {
-            IVehiculoRepository accessData = new VehiculoRepository();
             int numeroDeCarrosEnParqueadero;
             int numeroDeMotosEnParqueadero;
 
@@ -37,5 +37,19 @@ namespace Parqueadero.Core.Domain.Services
             accessData.RegistrarVehiculo(vehiculo);
         }
 
+        public Vehiculo ObtenerVehiculoPorPlaca(string placa)
+        {
+            Vehiculo vehiculo = accessData.ObtenerVehiculoPorPlaca(placa);
+            if (vehiculo.Placa == null)
+            {
+                throw new ParkingAccessException(MensajesGenerales.VehiculoNoEncontrado);
+            }
+            return vehiculo;
+        }
+
+        public void RealizarPagoDeFactura(string placa)
+        {
+            accessData.EliminarVehiculoPorPlaca(placa);
+        }
     }
 }
