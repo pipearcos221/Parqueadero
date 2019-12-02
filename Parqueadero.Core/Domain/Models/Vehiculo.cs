@@ -36,6 +36,8 @@ namespace Parqueadero.Core.Domain
 
         #region Business
 
+        public Vehiculo() { }
+
         public Vehiculo(VehicleType tipo, int cilindraje, string placa, DateTime fechaIngreso)
         {
             Tipo = tipo;
