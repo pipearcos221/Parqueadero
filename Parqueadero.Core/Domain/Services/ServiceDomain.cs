@@ -9,15 +9,20 @@ namespace Parqueadero.Core.Domain.Services
 {
     public class ServiceDomain
     {
-        IVehiculoRepository accessData = new VehiculoRepository();
+        private readonly IVehiculoRepository vehiculoRepository;
+
+        public ServiceDomain(IVehiculoRepository vehiculoRepository)
+        {
+            this.vehiculoRepository = vehiculoRepository;
+        }
 
         public void RegistrarIngresoDeVehiculo(Vehiculo vehiculo)
         {
             int numeroDeCarrosEnParqueadero;
             int numeroDeMotosEnParqueadero;
 
-            List<Vehiculo> listaDeCarros = accessData.ListarVehiculosPorTipo((int)VehicleType.Carro) != null ? accessData.ListarVehiculosPorTipo((int)VehicleType.Carro) : new List<Vehiculo>();
-            List<Vehiculo> listaDeMotos = accessData.ListarVehiculosPorTipo((int)VehicleType.Moto) != null ? accessData.ListarVehiculosPorTipo((int)VehicleType.Moto) : new List<Vehiculo>();
+            List<Vehiculo> listaDeCarros = vehiculoRepository.ListarVehiculosPorTipo((int)VehicleType.Carro) != null ? vehiculoRepository.ListarVehiculosPorTipo((int)VehicleType.Carro) : new List<Vehiculo>();
+            List<Vehiculo> listaDeMotos = vehiculoRepository.ListarVehiculosPorTipo((int)VehicleType.Moto) != null ? vehiculoRepository.ListarVehiculosPorTipo((int)VehicleType.Moto) : new List<Vehiculo>();
 
             numeroDeCarrosEnParqueadero = listaDeCarros.Count;
             numeroDeMotosEnParqueadero = listaDeMotos.Count;
@@ -34,12 +39,12 @@ namespace Parqueadero.Core.Domain.Services
                 throw new ParkingAccessException(MensajesGenerales.SinAutorizacionParaAccesoAParqueadero);
             }
 
-            accessData.RegistrarVehiculo(vehiculo);
+            vehiculoRepository.RegistrarVehiculo(vehiculo);
         }
 
         public Vehiculo ObtenerVehiculoPorPlaca(string placa)
         {
-            Vehiculo vehiculo = accessData.ObtenerVehiculoPorPlaca(placa);
+            Vehiculo vehiculo = vehiculoRepository.ObtenerVehiculoPorPlaca(placa);
             if (vehiculo.Placa == null)
             {
                 throw new ParkingAccessException(MensajesGenerales.VehiculoNoEncontrado);
@@ -49,7 +54,7 @@ namespace Parqueadero.Core.Domain.Services
 
         public void RealizarPagoDeFactura(string placa)
         {
-            accessData.EliminarVehiculoPorPlaca(placa);
+            vehiculoRepository.EliminarVehiculoPorPlaca(placa);
         }
     }
 }
