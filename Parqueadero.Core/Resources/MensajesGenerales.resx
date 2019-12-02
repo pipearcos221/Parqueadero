@@ -42,5 +42,11 @@
     <data name="VehiculoRegistrado">
         <value>Vehiculo registrado exitosamente</value>
     </data>
+    <data name="PagoExitoso">
+        <value>Pago exitoso</value>
+    </data>
+    <data name="VehiculoNoEncontrado">
+        <value>Vehiculo no encontrado</value>
+    </data>
     
 </root>
