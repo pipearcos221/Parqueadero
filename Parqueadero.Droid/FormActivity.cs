@@ -15,6 +15,7 @@ namespace Parqueadero.Droid
     [Activity(Label = "FormActivity", Theme = "@style/AppTheme")]
     public class FormActivity : AppCompatActivity
     {
+        #region Declarar variables
         ServiceDomain services = new ServiceDomain();
         Button btnRegistrarse;
         RadioGroup tipoVehiculo;
@@ -22,7 +23,9 @@ namespace Parqueadero.Droid
         TextInputLayout textInputLayoutCilindraje;
         TextInputEditText inputPlaca;
         TextInputEditText inputCilindraje;
+        #endregion
 
+        #region Ciclo de vida
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -38,18 +41,19 @@ namespace Parqueadero.Droid
 
             btnRegistrarse.Click += BtnRegistrarse_Click;
         }
+        #endregion
 
+        #region Listeners
         private void BtnRegistrarse_Click(object sender, System.EventArgs e)
         {
-            Vehiculo vehiculo;
-
-            vehiculo = ObtenerDatosDelFormulario();
+            Vehiculo vehiculo = ObtenerDatosDelFormulario();
             ValidarObligatoriedadDeCampoEnFormulario(vehiculo);
 
             if (vehiculo.Placa != String.Empty && vehiculo.Cilindraje != int.Parse(MensajesGenerales.CodigoErrorCampoObligatorio)) {
                 try {
                     services.RegistrarIngresoDeVehiculo(vehiculo);
                     Toast.MakeText(Application.Context, MensajesGenerales.VehiculoRegistrado, ToastLength.Short).Show();
+                    Finish();
                 }
                 catch (ParkingAccessException exception)
                 {
@@ -59,7 +63,9 @@ namespace Parqueadero.Droid
             }
 
         }
+        #endregion
 
+        #region Validaciones de vista
         private Vehiculo ObtenerDatosDelFormulario()
         {
             VehicleType tipoDeVehiculoSeleccionado = tipoVehiculo.CheckedRadioButtonId == Resource.Id.radio_carro ? VehicleType.Carro : VehicleType.Moto;
@@ -92,5 +98,6 @@ namespace Parqueadero.Droid
             }
 
         }
+        #endregion
     }
 }
