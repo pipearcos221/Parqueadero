@@ -51,7 +51,7 @@ namespace Parqueadero.Core.Domain
             string LetraRestringida = MensajesGenerales.LetraA;
             string[] DiasDeAccesoPermitido = { MensajesGenerales.DiaLunes, MensajesGenerales.DiaDomingo};
             string PrimeraLetraDePlaca = Placa != null ? Placa.Substring(0, 1) : string.Empty;
-            DateTime FechaActual = DateTime.Now;
+            DateTime FechaActual = FechaIngreso;
             DateTimeFormatInfo DateTimeFormat = new CultureInfo(MensajesGenerales.CulturaEspanol).DateTimeFormat;
             string DiaActual = FechaActual.ToString(MensajesGenerales.FormatoDeFechaMostrarSoloELDiaDeLaSemana, DateTimeFormat);
             if (String.Equals(PrimeraLetraDePlaca, LetraRestringida, StringComparison.OrdinalIgnoreCase))
