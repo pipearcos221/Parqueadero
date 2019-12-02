@@ -9,5 +9,7 @@ namespace Parqueadero.Core.Domain.Repository
         List<Vehiculo> ListarVehiculosPorTipo(int tipo);
 
         void EliminarVehiculoPorPlaca(string placa);
+
+        Vehiculo ObtenerVehiculoPorPlaca(string placa);
     }
 }

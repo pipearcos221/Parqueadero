@@ -37,10 +37,26 @@ namespace Parqueadero.Core.Data
 
         public void EliminarVehiculoPorPlaca(string placa)
         {
-            var vehiculoAEliminar = realm.All<VehiculoDB>().First(v => v.Placa == placa);
+            VehiculoDB vehiculoAEliminar = realm.All<VehiculoDB>().First(v => v.Placa == placa);
             using var transaction = realm.BeginWrite();
             realm.Remove(vehiculoAEliminar);
             transaction.Commit();
         }
+
+        public Vehiculo ObtenerVehiculoPorPlaca(string placa)
+        {
+            VehiculoDB vehiculoDB = realm.All<VehiculoDB>().FirstOrDefault(v => v.Placa == placa);
+            Vehiculo vehiculo;
+            if (vehiculoDB != null)
+            {
+                vehiculo = vehiculoDBAVehiculoMapper.Mapear(vehiculoDB);
+            }
+            else
+            {
+                vehiculo = new Vehiculo();
+            }
+            return vehiculo;
+        }
+
     }
 }
