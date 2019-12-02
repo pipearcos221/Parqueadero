@@ -9,9 +9,12 @@ namespace Parqueadero.Droid
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        #region Declarar variables
         Button btnIngresar;
         Button btnFacturar;
+        #endregion
 
+        #region Ciclo de vida
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -23,7 +26,9 @@ namespace Parqueadero.Droid
             btnIngresar.Click += BtnIngresar_Click;
             btnFacturar.Click += BtnFacturar_Click;
         }
+        #endregion
 
+        #region Listeners
         private void BtnIngresar_Click(object sender, System.EventArgs e)
         {
             Intent intent = new Intent(this, typeof(FormActivity));
@@ -35,9 +40,7 @@ namespace Parqueadero.Droid
             Intent intent = new Intent(this, typeof(PayActivity));
             StartActivity(intent);
         }
-      
-
-
+        #endregion
     }
 
 }
