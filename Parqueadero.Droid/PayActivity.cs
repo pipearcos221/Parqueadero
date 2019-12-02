@@ -43,6 +43,65 @@ namespace Parqueadero.Droid
         }
         #endregion
 
+        #region Listeners
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            string placa = textInputEditTextPlacaFacturar.Text != null ? textInputEditTextPlacaFacturar.Text : string.Empty;
+            ValidadObligatoriedadDeCampos(placa);
+            if (placa != string.Empty)
+            {
+                try
+                {
+                    vehiculoDeSalida = services.ObtenerVehiculoPorPlaca(placa);
+                    FijarPrecioAPagar(vehiculoDeSalida);
+                }
+                catch (ParkingAccessException exception)
+                {
+                    Toast.MakeText(Application.Context, exception.Message, ToastLength.Short).Show();
+                }
+            }
+
         }
+
+        private void BtnPagar_Click(object sender, EventArgs e)
+        {
+            string placa = textInputEditTextPlacaFacturar.Text != null ? textInputEditTextPlacaFacturar.Text : string.Empty;
+            ValidadObligatoriedadDeCampos(placa);
+            if (vehiculoDeSalida.Placa != null)
+            {
+                services.RealizarPagoDeFactura(placa);
+                Toast.MakeText(Application.Context, MensajesGenerales.PagoExitoso, ToastLength.Short).Show();
+                Finish();
+            }
+            else
+            {
+                Toast.MakeText(Application.Context, MensajesGenerales.VehiculoNoEncontrado, ToastLength.Short).Show();
+            }
+
+        }
+        #endregion
+
+        #region Validaciones de vista
+        private void ValidadObligatoriedadDeCampos(string placa)
+        {
+            if (placa == string.Empty)
+            {
+                textInputLayoutPlacaFacturar.ErrorEnabled = true;
+                textInputLayoutPlacaFacturar.Error = MensajesGenerales.CampoObligatorio;
+            }
+            else
+            {
+                textInputLayoutPlacaFacturar.ErrorEnabled = false;
+            }
+        }
+
+        private void FijarPrecioAPagar(Vehiculo vehiculo)
+        {
+            int numeroDeDiasACobrar = vehiculo.ObtenerNumeroDeDiasDeEstadia();
+            int numeroDeHorasACobrar = vehiculo.ObtenerNumeroDeHorasDeEstadia();
+            int precioAPagar = vehiculo.CalcularPrecioAPagar(numeroDeDiasACobrar, numeroDeHorasACobrar);
+            precio.Text = precioAPagar.ToString();
+        }
+        #endregion
     }
 }
