@@ -9,6 +9,8 @@ using System;
 using Parqueadero.Core.Domain.Enumerations;
 using Parqueadero.Core.Resources;
 using Parqueadero.Core.Domain.Exceptions;
+using Parqueadero.Droid.DependencyInjection;
+using Parqueadero.Core.Domain.Repository;
 
 namespace Parqueadero.Droid
 {
@@ -16,7 +18,7 @@ namespace Parqueadero.Droid
     public class FormActivity : AppCompatActivity
     {
         #region Declarar variables
-        ServiceDomain services = new ServiceDomain();
+        ServiceDomain services; 
         Button btnRegistrarse;
         RadioGroup tipoVehiculo;
         TextInputLayout textInputLayoutPlaca;
@@ -31,6 +33,8 @@ namespace Parqueadero.Droid
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_form);
             Title = "Registro";
+
+            services = new ServiceDomain(AndroidAppInjector.Resolve<IVehiculoRepository>()); 
 
             btnRegistrarse = FindViewById<Button>(Resource.Id.btn_finalizar_registro);
             tipoVehiculo = FindViewById<RadioGroup>(Resource.Id.radiogroup_tipo);

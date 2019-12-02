@@ -6,8 +6,10 @@ using Android.Support.V7.App;
 using Android.Widget;
 using Parqueadero.Core.Domain;
 using Parqueadero.Core.Domain.Exceptions;
+using Parqueadero.Core.Domain.Repository;
 using Parqueadero.Core.Domain.Services;
 using Parqueadero.Core.Resources;
+using Parqueadero.Droid.DependencyInjection;
 
 namespace Parqueadero.Droid
 {
@@ -15,7 +17,7 @@ namespace Parqueadero.Droid
     public class PayActivity : AppCompatActivity
     {
         #region Declarar variables
-        ServiceDomain services = new ServiceDomain();
+        ServiceDomain services;
         TextInputLayout textInputLayoutPlacaFacturar;
         TextInputEditText textInputEditTextPlacaFacturar;
         Button btnBuscar;
@@ -30,6 +32,8 @@ namespace Parqueadero.Droid
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_pay);
             Title = "Facturacion";
+
+            services = new ServiceDomain(AndroidAppInjector.Resolve<IVehiculoRepository>());
 
             textInputLayoutPlacaFacturar = FindViewById<TextInputLayout>(Resource.Id.textinputlayout_facturar_placa);
             textInputEditTextPlacaFacturar = FindViewById<TextInputEditText>(Resource.Id.input_facturar_placa);
